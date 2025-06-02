@@ -6,7 +6,7 @@ This page recorded the codes and data used and mentioned in [*xxx*](XXX). And yo
 
 abstract .
 
-To effectively demonstrate our step-by-step analysis of single-cell RNA sequencing (scRNA-seq), single-cell T-cell receptor sequencing (scTCR-seq), and single-cell spatial transcriptomics (scSpatial), we have meticulously compiled and stored detailed procedural information in Markdown files. This extensive documentation encompasses records of quality control measures, batch effect reduction, dimensionality reduction, cell clustering, pseudotime construction, identification of dynamically expressed genes, and pathway enrichment.
+Gut fungal dysbiosis and the presence of pathogenic fungal strains is increasingly recognized as a contributing factor to inflammatory bowel disease (IBD) pathogenesis. The subpopulation of IBD patients as well as clinical strategies if targeting gut fungi in IBD remain underexplored. Here, we conducted a longitudinal, multi-omics analysis in a prospective, head-to-head comparative study involving 40 IBD patients presenting with oral thrush and mild to moderate IBD disease activity. Notably, *C. albicans* strains detected in these patients were shared between the oral cavity and the gut, enabling a therapeutic strategy that distinguishes between oral and orogastrointestinal fungal targeting. Based on this, patients were assigned to standard antifungal treatments with site-specific activity: oral nystatin targeting *Candida* in the oral cavity (ORNT), or systemic fluconazole targeting both oral and gastrointestinal *Candida* (GIFT). By integrating fungal culturing, ITS and metagenomic sequencing with untargeted metabolomics we found that GIFT, but not ORNT, effectively targets gut *C. albicans* and other pathogenic fungi in IBD patients. Cross-kingdom analyses revealed that in the GIFT group reductions in fungal diversity correlated with increased bacterial diversity and the emergence of beneficial microbial metabolites including butyrate and lithocholic acid. Metabolomic modules negatively associated with fungal burden were enriched in bile acid and fatty acid biosynthesis pathways, while modules linked to persistence of *C. albicans* were enriched in pro-inflammatory mediators.  These findings highlight an oral-gut axis of fungal dissemination and establish a mechanistic rationale for testing antifungal therapy as personalized co-treatment strategies for IBD patients suffering pathogenic gut fungal expansion.
 
 # **1. Codes of analyzing and visualization**
 
@@ -43,7 +43,7 @@ Each chapter contains detailed scripts, methodologies, and analyses relevant to 
 
 # **2. Raw data download**
 
-- **Description**: This section includes all the raw FASTQ files from our study. These files are crucial for in-depth data analysis and understanding the sequencing results from single-cell RNA, T-cell receptor, and spatial transcriptomics.
+- **Description**: This section includes all the raw FASTQ files from our study. These files are crucial for in-depth data analysis and understanding the sequencing results from multiple-Omics.
 
 - **Download**: You can access and download these files from the [GEO database](https://chat.openai.com/c/link-to-download).
 
@@ -51,48 +51,36 @@ Below is a detailed annotation of the file structure and contents:
 
 ```shell
 [4.0K]  .
-├── [4.0K]  scRNA
-│   ├── [ 44G]  ACC10_RNA_S1_L001_R1_001.fastq.gz
-3 directories, 42 files
 ```
 
 # **3. Processed Data Download**
 
-## 3.1. CellRanger and SpaceRanger Output
+## 3.1. XXX and XXX  Output
 
-- **Description**: This section includes the output files from Cell Ranger and Space Ranger, essential for the initial data processing and analysis of single-cell RNA, T-cell receptor, and spatial transcriptomics data.
+- **Description**: This section includes the output files fromXXXX, essential for the initial data processing and analysis.
 - **Download**: These files are available for access and download from the [GEO database](https://chat.openai.com/c/link-to-download).
 
 Below is a detailed annotation of the file structure and contents:
 
 ```shell
-plaintextCopy code[4.0K]  .
-├── [4.0K]  cellranger_output
-│   ├── [424M]  ACC10_RNA.tar.gz
+code[4.0K]  .
 ```
 
 - Contents
-  - Each `_RNA.tar.gz` file includes the filtered_feature_bc_matrix output and loupe file from the Cell Ranger count model.
-  - Each `_TCR.tar.gz` file contains the filtered_contig_annotations.csv, clonotypes.csv, and loupe.vloupe files generated from the Cell Ranger TCR model.
-  - Each `_spatial.tar.gz` file includes the filtered_feature_bc_matrix output and loupe.cloupe file from the Space Ranger count model.
+  - Each `XXX.tar.gz` file includes the XX file from XXX count model.
+  
+    
 
 ## 3.2. R Data Files Generated in This Study
 
-- **Description**: All R data files (.rds) related to single-cell RNA sequencing (scRNA-seq), single-cell T-cell receptor sequencing (scTCR-seq), single-cell spatial transcriptomics (scSpatial), and The Cancer Genome Atlas Adrenocortical Carcinoma (TCGA-ACC) data are available. These files encompass a comprehensive range of analyses and findings from our study.
-- **Download**: You can download these files from [Zenodo Zenodo10416598](https://zenodo.org/records/10416598).
+- **Description**: All R data files (.rds) related to XXX data are available. These files encompass a comprehensive range of analyses and findings from our study.
+- **Download**: You can download these files from [Zenodo Zenodo XXXX](https://zenodo.org/records/XXX).
 
 Here's an annotation for each file to give you :
 
 ~~~shell
 tree -lh
 [4.0K]  .
-├── [ 16M]  CCI.cor_genes.GSEA.rds
-CCI.cor_genes.GSEA.rds: Gene Set Enrichment Analysis (GSEA) results for genes correlated with Confused Cell Identity (CCI) in ACC.
-
-├── [791K]  CCI.cor_genes.rds
-CCI.cor_genes.rds: List or data frame of genes correlated with Confused Cell Identity in ACC.
-
-0 directories, 33 files
 ~~~
 
 Each file seems to contain specific data subsets or analysis results, crucial for a comprehensive understanding of ACC and normal adrenal tissues at the single-cell level.
@@ -104,4 +92,4 @@ Our paper has been published in [*XXX Journal*](https://chat.openai.com/c/xxxx).
 The raw data supporting the findings of this study can be downloaded from the following repositories:
 
 - **GEO Database**: Access our dataset by visiting [GSEXXX](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSEXXX). This link will take you directly to the dataset's page.
-- **Zenodo**: Additional data files are available on Zenodo. Download them at [Zenodo10416598](https://zenodo.org/records/10416598).
+- **Zenodo**: Additional data files are available on Zenodo. Download them at [Zenodo XXX](https://zenodo.org/records/XXX).
