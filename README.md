@@ -10,7 +10,7 @@ Gut fungal dysbiosis has been implicated in inflammatory bowel disease (IBD), ye
 
 **Introduction to Our Script Compilation for Analysis**
 
-In our comprehensive analysis of antifungal treatment in the MMC cohort, we have organized our scripts into five analysis chapters (Chapters 2–6). Each chapter focuses on a specific aspect of the analysis, enabling a detailed examination of different facets of antifungal treatment effects in IBD. Below is a guide to the content of each chapter and the script file that contains it:
+In our comprehensive analysis of antifungal treatment in the MMC cohort, we have organized our scripts into five analysis chapters (Chapters 1–5). Each chapter focuses on a specific aspect of the analysis, enabling a detailed examination of different facets of antifungal treatment effects in IBD. Below is a guide to the content of each chapter and the script file that contains it:
 
 **[Chapter 1 — Fungal Abundance Data Analysis](Fungi.md)** (`Fungi.md`)
 
@@ -39,14 +39,10 @@ Each chapter contains detailed scripts, methodologies, and analyses relevant to 
 
 # **2. Raw data download**
 
-- **Description**: This section includes all the raw FASTQ files from our study. These files are crucial for in-depth data analysis and understanding the sequencing results from multiple-Omics.
+- **Description**: This section includes all the raw ITS1 FASTQ files from our study.
 
 - **Download**: You can access and download these files from the [PRJNA1449485](https://dataview.ncbi.nlm.nih.gov/object/PRJNA1449485).
 
 # **Citation**
 
-Our paper has been published in [*Nature Medicine*](https://c). For further reference and details, you can access the publication at the provided link.
-
-The raw data supporting the findings of this study can be downloaded from the following repositories:
-
-- **Database**: Access our dataset by visiting [PRJNA1449485](https://dataview.ncbi.nlm.nih.gov/object/PRJNA1449485). 
+Our paper has been published in [*Nature Medicine*](https://c). For further reference and details, you can access the publication at the provided [link]().
