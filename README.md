@@ -33,7 +33,7 @@ In our comprehensive analysis of antifungal treatment in the MMC cohort, we have
 - **Content:** Integrates the multi-omics layers above to characterize **cross-kingdom microbial networks** and their links to clinical outcomes. This chapter is split across three scripts:
   - **[5.1 Fungal features vs metabolite modules](Cor_Fungi_Metabolites.md)** (`Cor_Fungi_Metabolites.md`) — correlates fungal diversity / *Candida* burden with metabolite modules.
   - **[5.2 Bacterial taxa vs metabolite modules](Cor_Bac_Metabolites.md)** (`Cor_Bac_Metabolites.md`) — correlates Fluconazole-responsive bacterial taxa with metabolite modules.
-  - **[5.3 Clinical indices vs microbiome/metabolome features](Cor_Clincal_micro.md)** (`Cor_Clincal_micro.md`) — relates SCFA-producing/probiotic taxa and metabolite features to clinical disease indices.
+  - **[5.3 Clinical indices vs mycobiome/bacteriome/metabolome features](Cor_Clincal_micro.md)** (`Cor_Clincal_micro.md`) — relates SCFA-producing/probiotic taxa and metabolite features to clinical disease indices.
 
 Each chapter contains detailed scripts, methodologies, and analyses relevant to the specific aspect of antifungal treatment it addresses. This structured approach allows researchers to navigate our comprehensive analysis with ease, enhancing their understanding of antifungal treatment effects in IBD.
 
