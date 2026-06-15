@@ -1,8 +1,8 @@
-# 6.2 Cross-kingdom Correlation: Bacterial Taxa vs Metabolite Modules
+# 5.2 Cross-kingdom Correlation: Bacterial Taxa vs Metabolite Modules
 
 This script correlates the relative abundance of Fluconazole-responsive bacterial species with metabolite levels, separately for the Nystatin (ORNT) and Fluconazole (GIFT) groups. It computes both raw and baseline-corrected (W0-delta) Spearman correlation matrices and visualizes key bacteria–metabolite pairs (e.g. *Faecalibacterium prausnitzii* vs SCFAs, *Ruminococcus* vs bile acids).
 
-## 6.2.1 Align Bacterial Abundance and Metabolite Tables
+## 5.2.1 Align Bacterial Abundance and Metabolite Tables
 
 Loads species-level metagenomic relative abundances, restricts to Fluconazole-responsive taxa, aligns samples with the metabolite matrix and the merged multi-omics metadata, and saves the matched tables (`Metabolites_exp1`, `relativeAb_all.Bac_FluInc1`, `microbiota4`).
 
@@ -50,7 +50,7 @@ mcsaveRDS(relativeAb_all.Bac_FluInc1,"./workshop/MMC/sample_info/final_Res/v2/re
 mcsaveRDS(microbiota4,"./workshop/MMC/sample_info/final_Res/v2/microbiota4.rds")
 ~~~
 
-## 6.2.2 Compute Metabolite–Bacteria Correlation Matrices (Raw and W0-delta)
+## 5.2.2 Compute Metabolite–Bacteria Correlation Matrices (Raw and W0-delta)
 
 Defines `flattenCorrMatrix()` and computes BH-adjusted Spearman correlations between metabolites and bacterial taxa for each treatment group, on both the raw abundances and the per-patient W0-baseline-subtracted (delta) values, saving each correlation table for downstream plotting.
 
@@ -157,7 +157,7 @@ mcsaveRDS(Fluconazole,"./workshop/MMC/sample_info/final_Res/v2/Fluconazole.cor_a
 mcsaveRDS(Fluconazole.paired.df1,"./workshop/MMC/sample_info/final_Res/v2/Fluconazole.paired.df.cor_all_delta.rds")
 ~~~
 
-## 6.2.3 Reshape Correlations into Wide Matrices and Build Plotting Objects
+## 5.2.3 Reshape Correlations into Wide Matrices and Build Plotting Objects
 
 Reloads the raw and delta correlation results, reshapes them into wide correlation/adjusted-p matrices with harmonized feature names, and assembles per-treatment merged objects (abundances + metadata) used for the scatter plots below.
 
@@ -229,7 +229,7 @@ colnames(Fluconazole.merge_obj2)[duplicated(colnames(Fluconazole.merge_obj2))]
 Fluconazole.merge_obj2 <- Fluconazole.merge_obj2[,!duplicated(colnames(Fluconazole.merge_obj2))]
 ~~~
 
-## 6.2.4 Scatter Plot Helper (lm-based)
+## 5.2.4 Scatter Plot Helper (lm-based)
 
 Defines `plot_module_cor_metebo_Bac()`, which draws a metabolite-vs-bacterium scatter with a linear fit and annotates the correlation coefficient and p-value (optionally taken from a precomputed correlation/p-value table).
 
@@ -263,7 +263,7 @@ plot_module_cor_metebo_Bac <- function(df, module, xvar = "Candida_albicans",MIC
 }
 ~~~
 
-## 6.2.5 *Faecalibacterium prausnitzii* vs SCFA Metabolites (Raw)
+## 5.2.5 *Faecalibacterium prausnitzii* vs SCFA Metabolites (Raw)
 
 Plots *F. prausnitzii* abundance against caproic, pantothenic, and butyric acid in both treatment groups using raw values, exported as `Fig4.Faecalibacterium_prausnitzii.cor.svg`.
 
@@ -281,7 +281,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig4.Faecalibacterium_prausnitzii.cor.
 
 ![image-20260615104851049](./Cor_Bac_Metabolites.assets/image-20260615104851049.png)
 
-## 6.2.6 MIC-based Correlation Helpers
+## 5.2.6 MIC-based Correlation Helpers
 
 Defines `plot_module_cor_newx()` (scatter with either an `lm` fit or a fixed MIC-based slope plus 95% confidence band) and `sMIC_new()` (signed, permutation-tested maximal information coefficient), used for the delta-based plots that follow.
 
@@ -380,7 +380,7 @@ sMIC_new <- function(x, y, nperm = 2e4, seed = NULL, method = "spearman",
 }
 ~~~
 
-## 6.2.7 *Faecalibacterium prausnitzii* vs SCFAs (W0-delta, MIC)
+## 5.2.7 *Faecalibacterium prausnitzii* vs SCFAs (W0-delta, MIC)
 
 Computes MIC statistics and plots baseline-corrected *F. prausnitzii* vs hexanoic/pantothenic/butyric acid for both groups, exported as `Fig4.Faecalibacterium_prausnitzii.cor_Delta.svg`.
 
@@ -411,7 +411,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig4.Faecalibacterium_prausnitzii.cor_
 
 ![image-20260615104938663](./Cor_Bac_Metabolites.assets/image-20260615104938663.png)
 
-## 6.2.8 *Ruminococcus* vs Bile Acids (W0-delta, MIC)
+## 5.2.8 *Ruminococcus* vs Bile Acids (W0-delta, MIC)
 
 Computes MIC statistics and plots baseline-corrected *Ruminococcus* vs deoxycholic/lithocholic/coprocholic acid for both groups, exported as `Fig4.Ruminococcus.spp.cor.delta.svg`.
 
@@ -442,7 +442,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig4.Ruminococcus.spp.cor.delta.svg", 
 
 ![image-20260615105008702](./Cor_Bac_Metabolites.assets/image-20260615105008702.png)
 
-## 6.2.9 *Ruminococcus* vs Bile Acids (Raw)
+## 5.2.9 *Ruminococcus* vs Bile Acids (Raw)
 
 Plots raw *Ruminococcus* abundance against the same bile acids in both groups, exported as `Fig4.Ruminococcus.spp.cor.svg`.
 
@@ -460,7 +460,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig4.Ruminococcus.spp.cor.svg", plot=p
 
 ![image-20260615105039843](./Cor_Bac_Metabolites.assets/image-20260615105039843.png)
 
-## 6.2.10 *Streptococcus infantis* vs L-Lactic Acid
+## 5.2.10 *Streptococcus infantis* vs L-Lactic Acid
 
 Plots *S. infantis* against L-lactic acid in both groups (using the precomputed adjusted-p/correlation tables) and reports the permutation-based signed MIC, exported as `Fig4.Streptococcus_infantis.cor.svg`.
 

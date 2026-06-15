@@ -1,8 +1,8 @@
-# 3.1 Main Bacterial Analysis: Data Processing, Visualization, and Statistical Testing
+# 2.1 Main Bacterial Analysis: Data Processing, Visualization, and Statistical Testing
 
 This chapter processes the MMC metagenomic (and ITS) profiles to characterize how antifungal treatment reshapes the gut bacterial community. It covers count import and diversity estimation, beta-diversity (PERMANOVA/PCoA), taxonomic composition, LEfSe differential-abundance testing across time points, dynamics of gut-associated/SCFA-producing taxa, phylogenetic visualization, and cross-kingdom relationships between bacterial and fungal features.
 
-## 3.1.1. Overview of Bacterial ITS and Metagenomic Data Processing
+## 2.1.1. Overview of Bacterial ITS and Metagenomic Data Processing
 
 Imports the metagenomic count matrix and taxonomy, collapses counts to the species level with quality filtering, and builds a `TreeSummarizedExperiment` with relative abundances and a full panel of alpha-diversity metrics (observed richness, Shannon, Simpson, rarity, dominance, divergence).
 
@@ -67,9 +67,9 @@ Bac.tse <- mia::estimateDivergence(Bac.tse,assay.type = "counts",reference = "me
 colData(Bac.tse)$total_raw_counts <- colSums(assay(Bac.tse, "counts"))
 ~~~
 
-## 3.1.2 Beta-diversity: PERMANOVA and PCoA
+## 2.1.2 Beta-diversity: PERMANOVA and PCoA
 
-Loads per-treatment PERMANOVA results (Jaccard/Bray-Curtis) and draws the PCoA ordination of bacterial community composition, exported as `Fig3.1.Pcoa.svg`.
+Loads per-treatment PERMANOVA results (Jaccard/Bray-Curtis) and draws the PCoA ordination of bacterial community composition, exported as `Fig2.1.Pcoa.svg`.
 
 ~~~R
 All_sig.Flu <- mcreadRDS("./projects/ITS_Others/Lib40/MMC_ITS/MMC_MGX_PERMANOVA_res.Fluconazole.rds")
@@ -132,12 +132,12 @@ ALL_PLOTS <- lapply(1:length(treatment), function(treat) {
 })
 plot <- wrap_plots(ALL_PLOTS, nrow=1)
 plot
-ggsave("./projects/MMC/Figures/v2_figures/Fig3.1.Pcoa.svg", plot=plot,width = 10, height = 4,dpi=300)
+ggsave("./projects/MMC/Figures/v2_figures/Fig2.1.Pcoa.svg", plot=plot,width = 10, height = 4,dpi=300)
 ~~~
 
 ![image-20260615092959779](./Bacterial.assets/image-20260615092959779.png)
 
-## 3.1.3 Relative Abundance and SCFA-producer / Probiotic Taxa Sets
+## 2.1.3 Relative Abundance and SCFA-producer / Probiotic Taxa Sets
 
 Rebuilds the bacterial `TreeSummarizedExperiment`, computes genus- and species-level relative abundances (saved as `MMC.metagenomic.relativeAb_all.rds`), and defines curated taxa sets (butyrate/propionate/valerate producers, probiotics, gut-associated bacteria) used throughout the chapter.
 
@@ -228,9 +228,9 @@ gut_associated_bac <- sort(c(Butyrate_producing_bac,Propionate_producing_bac,Val
 gut_associated_bac <- intersect(gut_associated_bac,relativeAb_all$names)
 ~~~
 
-## 3.1.4 Taxonomic Composition and Alpha-diversity Over Time
+## 2.1.4 Taxonomic Composition and Alpha-diversity Over Time
 
-Computes per-treatment mean relative abundance and alpha-diversity across time points and visualizes bacterial community composition and diversity shifts, exported as `Fig3.1.Bac_diversity.svg`.
+Computes per-treatment mean relative abundance and alpha-diversity across time points and visualizes bacterial community composition and diversity shifts, exported as `Fig2.1.Bac_diversity.svg`.
 
 ~~~R
 relabundance_total_Species <- relativeAb_all
@@ -316,12 +316,12 @@ total_plots2 <- lapply(1:length(diease_Scores),function(dis) {
     })
 plot <- CombinePlots(c(total_plots2),nrow=1)
 plot
-ggsave("./projects/MMC/Figures/v2_figures/Fig3.1.Bac_diversity.svg", plot=plot,width = 10, height = 4,dpi=300)
+ggsave("./projects/MMC/Figures/v2_figures/Fig2.1.Bac_diversity.svg", plot=plot,width = 10, height = 4,dpi=300)
 ~~~
 
 ![image-20260615093105165](./Bacterial.assets/image-20260615093105165.png)
 
-## 3.1.5 Differential Abundance Testing (LEfSe) per Time Point
+## 2.1.5 Differential Abundance Testing (LEfSe) per Time Point
 
 Runs LEfSe differential-abundance analysis comparing each post-treatment time point against W0 (for W1, W2, W4, W8) and saves the per-time-point results (`MMC.MGX.DAA_all.W*.raw.lefser.v2.rds`).
 
@@ -530,7 +530,7 @@ DAA_all.W8 <- list(Nystatin_all.W8,Fluconazole_all.W8)
 mcsaveRDS(DAA_all.W8,"./projects/ITS_Others/Lib40/MMC_ITS/MMC.MGX.DAA_all.W8.raw.lefser.v2.rds")
 ~~~
 
-## 3.1.6 Compile Significant Taxa and Variance Summary
+## 2.1.6 Compile Significant Taxa and Variance Summary
 
 Aggregates the significant (included) differential taxa across all time points into `MMC.METAG.inc_all.rds` and summarizes their contribution / proportion of variance, exported as `Fig3.bac_prop_var.svg`.
 
@@ -666,7 +666,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig3.bac_prop_var.svg", plot=plot,widt
 
 ![image-20260615093213386](./Bacterial.assets/image-20260615093213386.png)
 
-## 3.1.7 Assemble Differential Gut-associated Bacteria
+## 2.1.7 Assemble Differential Gut-associated Bacteria
 
 Combines the LEfSe LDA scores of gut-associated taxa across time points, computes a weighted mean trend per taxon, filters to consistently shifting species, and exports the table as `DiffBac_All.csv`.
 
@@ -722,7 +722,7 @@ DiffBac <- DiffBac[DiffBac$type %in% c("Genus","Species"),]
 write.csv(DiffBac,"./projects/MMC/Figures/figures_making/v4/DiffBac_All.csv")
 ~~~
 
-## 3.1.8 Differential Bacteria Delta Trajectories (Per-batch Panels)
+## 2.1.8 Differential Bacteria Delta Trajectories (Per-batch Panels)
 
 Plots the per-time-point delta (change-from-baseline) trajectories of the differential bacteria, rendered as separate batch panels, exported as `Fig3.bac_dyn.delta.timepoints.raw_merge_bacth1`–`bacth5`.
 
@@ -861,7 +861,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig3.bac_dyn.delta.timepoints.raw_merg
 
 ![Fig3.bac_dyn.delta.timepoints.raw_merge_bacth5](./Bacterial.assets/Fig3.bac_dyn.delta.timepoints.raw_merge_bacth5.png)
 
-## 3.1.9 Define Core / Candidate Gut-associated Taxa
+## 2.1.9 Define Core / Candidate Gut-associated Taxa
 
 Defines explicit lists of core and candidate gut-associated bacterial species, used to focus the dynamics analyses that follow.
 
@@ -915,7 +915,7 @@ maybe_gut <- c("Streptococcus_thermophilus","Clostridium_butyricum","Clostridium
                "Lactobacillus_acidophilus")
 ~~~
 
-## 3.1.10 Gut-associated Bacteria Dynamics (Multi-test)
+## 2.1.10 Gut-associated Bacteria Dynamics (Multi-test)
 
 Plots the longitudinal dynamics of gut-associated bacteria and compares Fluconazole vs Nystatin using the full statistical battery (ANOVA, ART, Kruskal–Wallis, permutation, Tukey, pairwise t, LMM, LOESS), exported as `Fig3.bac_dyn.delta.timepoints`.
 
@@ -1034,7 +1034,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig3.bac_dyn.delta.timepoints.svg", pl
 
 ![Fig3.bac_dyn.delta.timepoints](./Bacterial.assets/Fig3.bac_dyn.delta.timepoints.png)
 
-## 3.1.11 Gut-associated Bacteria Dynamics (Alternative View)
+## 2.1.11 Gut-associated Bacteria Dynamics (Alternative View)
 
 A second rendering of the gut-associated bacteria dynamics with the same statistical comparisons, exported as `Fig3.bac_dyn.delta.timepoints1`.
 
@@ -1132,9 +1132,9 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig3.bac_dyn.delta.timepoints1.svg", p
 
 ![Fig3.bac_dyn.delta.timepoints1](./Bacterial.assets/Fig3.bac_dyn.delta.timepoints1.png)
 
-## 3.1.12 Phylogenetic Tree of Differential Taxa
+## 2.1.12 Phylogenetic Tree of Differential Taxa
 
-Builds an ITS/metagenomic phylogeny and visualizes the differential taxa on a `ggtree`, exported as `S3.1.ggtree.svg`.
+Builds an ITS/metagenomic phylogeny and visualizes the differential taxa on a `ggtree`, exported as `S2.1.ggtree.svg`.
 
 ~~~R
 W1.lefser <- mcreadRDS("./projects/ITS_Others/Lib40/MMC_ITS/MMC.MGX.DAA_all.W1.raw.lefser.v2.rds")
@@ -1271,12 +1271,12 @@ d_genomic = data.frame(label=as.character(tree$tip.label), Species_anno[tree$tip
 p <- ggtree(tree, layout="circular") +geom_tippoint(size=1)
 p <- p + new_scale_fill() + geom_fruit(data=d_genomic,geom=geom_tile,mapping=aes(y=label, fill=Nystatin),offset=0.15, pwidth=0.1)+scale_fill_manual(values = c(jdb_palette("corona")[3],"lightgrey"))
 p <- p + new_scale_fill() + geom_fruit(data=d_genomic,geom=geom_tile,mapping=aes(y=label, fill=Fluconazole),offset=0.15, pwidth=0.1)+scale_fill_manual(values = c(jdb_palette("corona")[2],"lightgrey"))
-ggsave("./projects/MMC/Figures/v2_figures/S3.1.ggtree.svg", plot=p,width = 6, height = 5,dpi=300)
+ggsave("./projects/MMC/Figures/v2_figures/S2.1.ggtree.svg", plot=p,width = 6, height = 5,dpi=300)
 ~~~
 
 ![image-20260615094155472](./Bacterial.assets/image-20260615094155472.png)
 
-## 3.1.13 Build Combined Fungal–Bacterial Diversity Table
+## 2.1.13 Build Combined Fungal–Bacterial Diversity Table
 
 Builds a fungal `TreeSummarizedExperiment` (ITS) with diversity metrics and merges fungal and bacterial richness/abundance features per sample into `Fungal_tmp_projects2.rds` for cross-kingdom comparison.
 
@@ -1397,7 +1397,7 @@ geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "red")
 
 ![image-20260615094340981](./Bacterial.assets/image-20260615094340981.png)
 
-## 3.1.14 Fungal vs Bacterial Richness (2D Density)
+## 2.1.14 Fungal vs Bacterial Richness (2D Density)
 
 Plots a 2D kernel-density map of fungal observed richness versus bacterial observed richness, faceted by treatment and phase, exported as `Fig3.2.png`.
 
@@ -1410,7 +1410,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig3.2.png", plot=plot,width = 8, heig
 
 ![image-20260615094434274](./Bacterial.assets/image-20260615094434274.png)
 
-## 3.1.15 *Candida* vs Bacterial Features Correlation
+## 2.1.15 *Candida* vs Bacterial Features Correlation
 
 Relates *Candida albicans* burden to bacterial richness with a regression/correlation fit (distance-weighted point sizing), exported as `Fig3.0.svg`.
 

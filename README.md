@@ -1,6 +1,8 @@
-# MMC
+# **Antifungal therapy improves microbiome dynamics in Inflammatory Bowel Disease**
 
-This page recorded the codes and data used and mentioned in [*xxx*](XXX). And you could downloaded this paper by clicking [here](pdf/XXX)
+This page recorded the codes and data used and mentioned in [*Nature Medicine*](https://c). And you could downloaded this paper by clicking [here](pdf/XXX)
+
+![image-20260615162319999](./README.assets/image-20260615162319999.png)
 
 Gut fungal dysbiosis has been implicated in inflammatory bowel disease (IBD), yet strategies for targeting the gut mycobiota in IBD remain unexplored. Here we leveraged the observation that *Candida albicans* strains are shared between the oral cavity and gut in IBD patients with mild oral thrush to design a prospective observational study where we compared oral antifungal therapy (swish‑and‑spit nystatin, ORNT) versus oro‑gastrointestinal antifungal therapy (fluconazole, GIFT). In 53 patients with mild‑to‑moderate ulcerative colitis (UC) or Crohn’s disease (CD), fluconazole, but not nystatin, effectively reduced intestinal *Candida* burden and reshaped gut fungal composition. Intestinal fungal targeting in the GIFT group was associated with increased bacterial diversity, expansion of short‑chain fatty acid-producing taxa, restoration of anti‑inflammatory microbial metabolites, and durable shifts in cross‑kingdom microbial networks. This microbiome and metabolomic changes in the GIFT group were associated with improved disease activity indices and a decreased risk of disease progression over the 8‑week follow‑up period. This study demonstrates the feasibility of mycobiome‑based patient stratification and establishes a framework for investigating antifungal co-therapy for IBD patients with fungal manifestations.
 
@@ -26,7 +28,7 @@ In our comprehensive analysis of antifungal treatment in the MMC cohort, we have
 
 - **Content:** Presents **clinical outcome analyses**, including **disease scores (DAI, UC, CD), patient metadata, medications, disease progression, and their association with antifungal treatments**.
 
-**[Chapter 5 — Cross-kingdom and Clinical Correlation Analysis](Cor_Fungi_Metabolites.md)**
+**Chapter 5 — Cross-kingdom and Clinical Correlation Analysis**
 
 - **Content:** Integrates the multi-omics layers above to characterize **cross-kingdom microbial networks** and their links to clinical outcomes. This chapter is split across three scripts:
   - **[5.1 Fungal features vs metabolite modules](Cor_Fungi_Metabolites.md)** (`Cor_Fungi_Metabolites.md`) — correlates fungal diversity / *Candida* burden with metabolite modules.

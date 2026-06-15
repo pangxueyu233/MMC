@@ -1,8 +1,8 @@
-# 6.1 Cross-kingdom Correlation: Fungal Features vs Metabolite Modules
+# 5.1 Cross-kingdom Correlation: Fungal Features vs Metabolite Modules
 
 This script correlates fungal community features (diversity, *Candida* burden, pathogenic load) with metabolomic modules under antifungal treatment. It builds a unified multi-omics table, computes per-patient changes relative to the W0 baseline, and visualizes the associations using both linear regression and a permutation-based maximal information coefficient (MIC).
 
-## 6.1.1 Build the Integrated Multi-omics Value Table
+## 5.1.1 Build the Integrated Multi-omics Value Table
 
 Loads metabolite differential-abundance results and the Mfuzz temporal modules, annotates health- vs dysbiosis-associated metabolites (from the *Nature* dysbiosis reference), summarizes module-level z-scores, and merges fungal/bacterial diversity, *Candida* burden, clinical scores, and metabolite modules into a single per-sample table (`All_omics_values.rds`).
 
@@ -148,7 +148,7 @@ microbiota3$time.v2 <- factor(microbiota3$time.v2, levels=c("Pre","Post","LTM"))
 mcsaveRDS(microbiota3,"./workshop/MMC/sample_info/final_Res/v2/All_omics_values.rds")
 ~~~
 
-## 6.1.2 Compute Per-patient Changes Relative to W0 Baseline
+## 5.1.2 Compute Per-patient Changes Relative to W0 Baseline
 
 For each patient, subtracts the W0 (pre-treatment) value from every later time point so that all features (fungal, bacterial, metabolite modules, DAI) are expressed as paired changes from baseline, and adds absolute-change columns used later for point sizing.
 
@@ -189,7 +189,7 @@ paired.df <- paired.df[!is.na(paired.df$Module1),]
 table(paired.df$treatment)
 ~~~
 
-## 6.1.3 Correlation Helpers and *Candida albicans* vs Metabolite Modules
+## 5.1.3 Correlation Helpers and *Candida albicans* vs Metabolite Modules
 
 Defines `plot_module_cor_new()` (a scatter plot with either an `lm` fit or a fixed MIC-based slope and 95% confidence band) and `sMIC_new()` (a signed, permutation-tested maximal information coefficient). These are then applied to correlate each metabolite module (Module1–4) against *Candida albicans* change, exported as `Fig4.Ca_modules.svg`.
 
@@ -313,7 +313,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig4.Ca_modules.svg", plot=plot,width 
 
 ![image-20260615103954911](./Cor_Fungi_Metabolites.assets/image-20260615103954911.png)
 
-## 6.1.4 Fungal Richness vs Metabolite Modules
+## 5.1.4 Fungal Richness vs Metabolite Modules
 
 Repeats the MIC-based correlation, this time relating each metabolite module to fungal observed richness (`Fungal.observed`), exported as `Fig4.Fungal.shannon_modules.svg`.
 

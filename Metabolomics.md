@@ -1,10 +1,10 @@
-# 4.1 Main Metabolomic Analysis: Data Processing, Visualization, and Statistical Testing
+# 3.1 Main Metabolomic Analysis: Data Processing, Visualization, and Statistical Testing
 
 ## Overview of Metabolomic Data Processing
 
 This chapter analyzes the fecal metabolome under antifungal treatment. It covers DESeq2 normalization, batch-corrected ordination (NMF/UMAP), longitudinal short-chain fatty acid (SCFA) and bile-acid trajectories, health- vs dysbiosis-associated metabolite sets, Mfuzz temporal clustering into modules, and SMPDB pathway enrichment. Statistical comparisons between treatment groups use a multi-test battery (ANOVA, ART, Kruskal–Wallis, permutation, Tukey, pairwise t, LMM, LOESS/KS).
 
-## 4.1.1 DESeq2 Normalization vs log1p
+## 3.1.1 DESeq2 Normalization vs log1p
 
 Builds the DESeq2 dataset from raw metabolite counts (annotating batch), produces normalized counts, and compares DESeq2-normalized values against simple log1p normalization, exported as `Fig4.Comparison of normalization methods.svg`.
 
@@ -55,9 +55,9 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig4.Comparison of normalization metho
 
 ![image-20260615094618261](./Metabolomics.assets/image-20260615094618261.png)
 
-## 4.1.2 NMF/UMAP Ordination of the Metabolome
+## 3.1.2 NMF/UMAP Ordination of the Metabolome
 
-Runs NMF (top-variance features) plus UMAP on the batch-corrected metabolome separately for the Nystatin and Fluconazole arms, and plots the NMF ordination with median/MAD ellipses per treatment phase, exported as `Fig4.1.svg`.
+Runs NMF (top-variance features) plus UMAP on the batch-corrected metabolome separately for the Nystatin and Fluconazole arms, and plots the NMF ordination with median/MAD ellipses per treatment phase, exported as `Fig3.1.svg`.
 
 ~~~R
 corrected <- mcreadRDS("./workshop/MMC/sample_info/final_Res/v2/metabolomics.counts.corrected.rds")
@@ -146,12 +146,12 @@ p2 <- ggplot(Fluconazole_df, aes(x = NMF1, y = NMF2, color = time.v2, shape = ti
        title = "NMF of metabolomics Fluconazole") +theme_bw()
 plot <- plot_grid(p1,p2)
 plot
-ggsave("./projects/MMC/Figures/v2_figures/Fig4.1.svg", plot=plot,width = 10, height = 4,dpi=300)
+ggsave("./projects/MMC/Figures/v2_figures/Fig3.1.svg", plot=plot,width = 10, height = 4,dpi=300)
 ~~~
 
 ![image-20260615095403127](./Metabolomics.assets/image-20260615095403127.png)
 
-## 4.1.3 SCFA Density Ridgelines by Phase (Exploratory)
+## 3.1.3 SCFA Density Ridgelines by Phase (Exploratory)
 
 Assembles SCFA levels (butyric/propionic/valeric acid) with sample metadata and plots log2 density ridgelines by treatment phase (Pre/Post/LTM), with the pre-treatment median marked, as an exploratory view.
 
@@ -188,7 +188,7 @@ CombinePlots(c(total_plots2),ncol=1)
 
 ![image-20260615095523067](./Metabolomics.assets/image-20260615095523067.png)
 
-## 4.1.4 SCFA Density Ridgelines (Final Figure)
+## 3.1.4 SCFA Density Ridgelines (Final Figure)
 
 Re-draws the SCFA ridgelines with scaled densities for the final figure, exported as `Fig4.BUTYRIC.svg`.
 
@@ -210,7 +210,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig4.BUTYRIC.svg", plot=plot,width = 4
 
 ![image-20260615095609898](./Metabolomics.assets/image-20260615095609898.png)
 
-## 4.1.5 SCFA Change Trajectories (Multi-test)
+## 3.1.5 SCFA Change Trajectories (Multi-test)
 
 Computes per-patient baseline-corrected (delta) SCFA trajectories and compares Fluconazole vs Nystatin over time with the full statistical battery (ANOVA, ART, Kruskal–Wallis, permutation, Tukey, pairwise t, LMM, LOESS F-test), exported as `Fig4.7`.
 
@@ -304,7 +304,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig4.7.svg", plot=plot,width = 20, hei
 
 ![image-20260615095702800](./Metabolomics.assets/image-20260615095702800.png)
 
-## 4.1.6 Functional Metabolite Sets and Module Trajectories
+## 3.1.6 Functional Metabolite Sets and Module Trajectories
 
 Defines health- vs dysbiosis-associated metabolite sets (from the *Nature* dysbiosis reference, intersected with Mfuzz modules) plus fatty-acid and bile-acid biosynthesis sets, then plots set-level z-score trajectories with a LOESS/KS treatment comparison, exported as `Fig4.features.svg`.
 
@@ -425,7 +425,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig4.features.svg", plot=plot,width = 
 
 ![image-20260615095809099](./Metabolomics.assets/image-20260615095809099.png)
 
-## 4.1.7 Bile-Acid Change Trajectories: W0 → W8 (Multi-test)
+## 3.1.7 Bile-Acid Change Trajectories: W0 → W8 (Multi-test)
 
 Computes per-patient delta trajectories for selected bile-acid and sphingolipid metabolites across the full W0–W8 window and compares treatment groups with the full statistical battery, exported as `W0_W8.new`.
 
@@ -527,7 +527,7 @@ ggsave("./projects/MMC/Figures/v2_figures/W0_W8.new.png", plot=plot,width = 30, 
 
 ![image-20260615100023407](./Metabolomics.assets/image-20260615100023407.png)
 
-## 4.1.8 Bile-Acid Change Trajectories: W0 → W4 (Multi-test)
+## 3.1.8 Bile-Acid Change Trajectories: W0 → W4 (Multi-test)
 
 Repeats the bile-acid delta trajectory analysis excluding W8 (i.e. the on-treatment W0–W4 window), exported as `W0_W4.new`.
 
@@ -616,7 +616,7 @@ ggsave("./projects/MMC/Figures/v2_figures/W0_W4.new.png", plot=plot,width = 30, 
 
 ![W0_W4.new](./Metabolomics.assets/W0_W4.new.png)
 
-## 4.1.9 Differential Metabolites and Mfuzz Temporal Clustering
+## 3.1.9 Differential Metabolites and Mfuzz Temporal Clustering
 
 Computes per-treatment differential metabolites (each week vs W0), saves them, then runs Mfuzz soft clustering on the mean time-course to group metabolites into four temporal modules (`metabolomics.Mfuzz_cluster_metabolomics.v3.rds`).
 
@@ -700,7 +700,7 @@ mcsaveRDS(Mfuzz_cluster,"./workshop/MMC/sample_info/final_Res/v2/metabolomics.Mf
 # 6221
 ~~~
 
-## 4.1.10 Module Z-score Trajectories (All Clusters)
+## 3.1.10 Module Z-score Trajectories (All Clusters)
 
 Quantifies the z-scored time-course of each Mfuzz module per treatment and draws boxplot/line trajectories with pairwise time comparisons across all clusters and treatments.
 
@@ -754,7 +754,7 @@ stat_summary(fun.y = median, geom="point",colour="darkred", size=1.5) + stat_sum
 
 ![image-20260615100759369](./Metabolomics.assets/image-20260615100759369.png)
 
-## 4.1.11 Fluconazole-defined Modules Across Both Arms
+## 3.1.11 Fluconazole-defined Modules Across Both Arms
 
 Takes the Fluconazole-defined module membership and contrasts each module's trajectory in the Fluconazole vs Nystatin group side by side, exported as `Fig4.2.svg`.
 
@@ -799,9 +799,9 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig4.2.svg", plot=plot,width = 4, heig
 
 ![image-20260615103336146](./Metabolomics.assets/image-20260615103336146.png)
 
-## 4.1.12 Mfuzz Module Heatmap
+## 3.1.12 Mfuzz Module Heatmap
 
-Draws a ComplexHeatmap of the z-scored Fluconazole metabolite modules across time points (split by module and week) and exports it as `Fig4.1.pdf` plus a module membership table.
+Draws a ComplexHeatmap of the z-scored Fluconazole metabolite modules across time points (split by module and week) and exports it as `Fig3.1.pdf` plus a module membership table.
 
 ~~~R
 bb <- colorRampPalette(jdb_palette("brewer_yes"))(101)
@@ -819,7 +819,7 @@ show_column_names = TRUE, show_row_names = FALSE,column_title = names(Mfuzz_clus
 column_split = Mfuzz_cluster[[x]][[3]]$time,row_split = factor(Mfuzz_order$Cluster,levels=c("Module1","Module2","Module3","Module4")), cluster_row_slices = FALSE, use_raster = TRUE, 
 row_dend_reorder = TRUE, row_names_gp = gpar(fontsize = c(15)))
 
-pdf("./projects/MMC/Figures/v2_figures/Fig4.1.pdf",width=6,height=10)
+pdf("./projects/MMC/Figures/v2_figures/Fig3.1.pdf",width=6,height=10)
 Heatmap(counts_tmp, cluster_rows = TRUE, cluster_columns = FALSE, top_annotation = Mfuzz_cluster[[x]][[2]], col = col_fun2, 
 show_column_names = TRUE, show_row_names = FALSE,column_title = names(Mfuzz_cluster)[x], row_names_max_width = max_text_width(rownames(counts_tmp), gp = gpar(fontsize = 20)), 
 column_split = Mfuzz_cluster[[x]][[3]]$time,row_split = factor(Mfuzz_order$Cluster,levels=c("Module1","Module2","Module3","Module4")), cluster_row_slices = FALSE, use_raster = TRUE, 
@@ -831,7 +831,7 @@ write.csv(cbind(Mfuzz_order,counts_tmp),"./projects/MMC/Figures/figures_making/v
 
 ![image-20260615103412941](./Metabolomics.assets/image-20260615103412941.png)
 
-## 4.1.13 SMPDB Pathway Enrichment of Modules
+## 3.1.13 SMPDB Pathway Enrichment of Modules
 
 Performs SMPDB pathway over-representation testing (hypergeometric) for each metabolite module, curates anti-inflammatory / pro-inflammatory pathway groups, and renders the enrichment dot plot, exported as `Fig4.Metabolic Enrichment.svg`.
 

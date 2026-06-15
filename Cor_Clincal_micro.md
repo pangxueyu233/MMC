@@ -1,8 +1,8 @@
-# 6.3 Correlation: Clinical Indices vs Microbiome/Metabolome Features
+# 5.3 Correlation: Clinical Indices vs Microbiome/Metabolome Features
 
 This script relates microbiome and metabolome features to clinical disease indices (DAI, UC and CD scores). It computes SCFA-producer abundances, derives per-indicator weekly change tables, correlates features with clinical scores (raw and W0-delta, via permutation MIC), and produces longitudinal bar/LOESS plots comparing Nystatin (ORNT) vs Fluconazole (GIFT) in UC and CD subsets.
 
-## 6.3.1 SCFA-producer / Probiotic Abundances
+## 5.3.1 SCFA-producer / Probiotic Abundances
 
 Defines butyrate-, propionate-, and valerate-producing (and probiotic) taxa sets, sums their relative abundance per sample, and appends them to the merged multi-omics table.
 
@@ -30,7 +30,7 @@ microbiota3$Valeric_producing_bac <- as.numeric(100*colMeans(relabundance_tmp)[r
 mcsaveRDS(microbiota3,"./workshop/MMC/sample_info/final_Res/v2/All_omics_values.rds")
 ~~~
 
-## 6.3.2 Per-indicator Weekly Change Tables
+## 5.3.2 Per-indicator Weekly Change Tables
 
 Adds fecal SCFA metabolite levels (butyric/propionic/valeric acid) and, for each indicator, builds a per-patient table of log2 values at W0–W8 plus the W2-vs-W0 change (with W4/W8 fallback) and percent-of-baseline change, saved as `All_microbiome_diff.rds`.
 
@@ -122,7 +122,7 @@ names(results_list) <- indicators
 mcsaveRDS(results_list,"./workshop/MMC/Aidan_info/v2/All_microbiome_diff.rds")
 ~~~
 
-## 6.3.3 Features vs DAI (Raw)
+## 5.3.3 Features vs DAI (Raw)
 
 Defines the signed permutation-MIC function (`sMIC_new`) and the scatter helper (`plot_module_cor_xASm`), then correlates each microbiome/metabolome feature against the raw DAI score, exported as `Fig5.1.clincal_raw.cor.all`.
 
@@ -198,7 +198,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig5.1.clincal_raw.cor.all.png", plot=
 
 ![Fig5.1.clincal_raw.cor.all](./Cor_Clincal_micro.assets/Fig5.1.clincal_raw.cor.all.png)
 
-## 6.3.4 Features vs UC Score (Raw)
+## 5.3.4 Features vs UC Score (Raw)
 
 Restricts to UC patients and correlates each feature with the raw UC score, exported as `Fig5.1.UC.score.v2_raw.cor.all`.
 
@@ -221,7 +221,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig5.1.UC.score.v2_raw.cor.all.png", p
 
 ![Fig5.1.UC.score.v2_raw.cor.all](./Cor_Clincal_micro.assets/Fig5.1.UC.score.v2_raw.cor.all.png)
 
-## 6.3.5 Features vs CD Score (Raw)
+## 5.3.5 Features vs CD Score (Raw)
 
 Restricts to CD patients and correlates each feature with the raw CD score, exported as `Fig5.1.CD.score.raw_raw.cor.all`.
 
@@ -244,7 +244,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig5.1.CD.score.raw_raw.cor.all.png", 
 
 ![Fig5.1.CD.score.raw_raw.cor.all](./Cor_Clincal_micro.assets/Fig5.1.CD.score.raw_raw.cor.all.png)
 
-## 6.3.6 Features vs DAI (W0-delta)
+## 5.3.6 Features vs DAI (W0-delta)
 
 Builds a per-patient baseline-subtracted (delta) feature table (excluding W0), recomputes the MIC function to also return raw correlation rho/p, and correlates each delta feature with DAI change, exported as `Fig5.1.clincal_delta.cor.all`.
 
@@ -327,7 +327,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig5.1.clincal_delta.cor.all.png", plo
 
 ![Fig5.1.clincal_delta.cor.all](./Cor_Clincal_micro.assets/Fig5.1.clincal_delta.cor.all.png)
 
-## 6.3.7 Features vs DAI (W0-delta, lm/MIC Line Option)
+## 5.3.7 Features vs DAI (W0-delta, lm/MIC Line Option)
 
 Recomputes the DAI delta MIC with a smaller permutation budget and redefines `plot_module_cor_xASm` to support either an `lm` fit or a MIC-derived fixed slope, exported as `Fig5.1.clincal_delta.cor.all.keep`.
 
@@ -415,7 +415,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig5.1.clincal_delta.cor.all.keep.png"
 
 ![Fig5.1.clincal_delta.cor.all.keep](./../../MMC/Figures/v2_figures/Fig5.1.clincal_delta.cor.all.keep.png)
 
-## 6.3.8 Features vs DAI (W0-delta, Colored by Diagnosis)
+## 5.3.8 Features vs DAI (W0-delta, Colored by Diagnosis)
 
 Same DAI delta correlations as above, but colored by diagnosis (UC vs CD), exported as `Fig5.1.clincal_delta.cor.all.dieasse`.
 
@@ -430,7 +430,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig5.1.clincal_delta.cor.all.dieasse.p
 
 ![Fig5.1.clincal_delta.cor.all.dieasse](./../../MMC/Figures/v2_figures/Fig5.1.clincal_delta.cor.all.dieasse.png)
 
-## 6.3.9 Features vs DAI (W0-delta, MIC Slope with 95% CI)
+## 5.3.9 Features vs DAI (W0-delta, MIC Slope with 95% CI)
 
 Defines `plot_module_cor_xASm_new` (MIC-based slope plus a 95% confidence band) and re-plots the DAI delta correlations with this regression band, exported as `Fig5.1.clincal_delta.cor.all.keep`.
 
@@ -524,7 +524,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig5.1.clincal_delta.cor.all.keep.png"
 
 ![Fig5.1.clincal_delta.cor.all.keep](./Cor_Clincal_micro.assets/Fig5.1.clincal_delta.cor.all.keep-1781535736984-50.png)
 
-## 6.3.10 Longitudinal Microbiome Features in UC (Weekly, Multi-test)
+## 5.3.10 Longitudinal Microbiome Features in UC (Weekly, Multi-test)
 
 For UC patients, plots each feature over weeks (W0–W8) as raw bars plus per-patient delta LOESS trajectories, annotating Fluconazole-vs-Nystatin differences with a battery of tests (ANOVA, ART, Kruskal–Wallis, permutation, Tukey, pairwise t, LMM, LOESS F-test), exported as `Fig5.1.micrbiome_Features.UC`.
 
@@ -636,7 +636,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig5.1.micrbiome_Features.UC.png", plo
 
 ![Fig5.1.micrbiome_Features.UC](./Cor_Clincal_micro.assets/Fig5.1.micrbiome_Features.UC.png)
 
-## 6.3.11 Longitudinal Microbiome Features in CD (Weekly, Multi-test)
+## 5.3.11 Longitudinal Microbiome Features in CD (Weekly, Multi-test)
 
 Same weekly raw-bar plus delta-LOESS analysis and Fluconazole-vs-Nystatin test battery as above, applied to the CD subset, exported as `Fig5.1.micrbiome_Features.CD`.
 
@@ -747,7 +747,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig5.1.micrbiome_Features.CD.png", plo
 
 ![Fig5.1.micrbiome_Features.CD](./Cor_Clincal_micro.assets/Fig5.1.micrbiome_Features.CD.png)
 
-## 6.3.12 UC Features by Treatment Phase (Pre/Post/LTM)
+## 5.3.12 UC Features by Treatment Phase (Pre/Post/LTM)
 
 Collapses time into Pre (W0), Post (W1–W4), and LTM (W8) phases and plots raw and delta feature levels per phase for UC, exported as `Fig5.1.microbiomics.time.v2.UC`.
 
@@ -814,7 +814,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig5.1.microbiomics.time.v2.UC.png", p
 
 ![Fig5.1.microbiomics.time.v2.UC](./Cor_Clincal_micro.assets/Fig5.1.microbiomics.time.v2.UC.png)
 
-## 6.3.13 CD Features by Treatment Phase (Pre/Post/LTM)
+## 5.3.13 CD Features by Treatment Phase (Pre/Post/LTM)
 
 Same Pre/Post/LTM phase comparison of raw and delta feature levels applied to the CD subset, exported as `Fig5.1.microbiomics.time.v2.CD`.
 

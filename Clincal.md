@@ -2,7 +2,7 @@
 
 This chapter analyzes clinical outcomes in the MMC cohort: baseline disease activity, longitudinal score trajectories under antifungal treatment, patient demographics and concomitant medications, clinical response classification, and survival/Cox modeling of disease progression. Key methodologies include paired baseline-corrected comparisons, a multi-test statistical battery (ANOVA, ART, Kruskal–Wallis, permutation, Tukey, pairwise t, LMM, LOESS), Kaplan–Meier survival analysis, and Cox proportional-hazards modeling.
 
-## 5.1.1 Baseline (W0) Disease Scores: Nystatin vs Fluconazole
+## 4.1.1 Baseline (W0) Disease Scores: Nystatin vs Fluconazole
 
 Selects W0 (pre-treatment) records for the Nystatin and Fluconazole arms and compares baseline clinical scores (UC/CD scores, stooling frequency, bleeding, etc.) between the two groups with a permutation test, exported as `Clincal_feature_com_W0.svg`.
 
@@ -90,9 +90,9 @@ ggsave("./projects/MMC/Figures/v2_figures/Clincal_feature_com_W0.svg", plot=plot
 
 
 
-## 5.1.2 Longitudinal Clinical Scores Over Weeks (Multi-test)
+## 4.1.2 Longitudinal Clinical Scores Over Weeks (Multi-test)
 
-Plots each clinical score across weeks (W0–W8) as raw bars and per-patient baseline-corrected (delta) trajectories, annotating Fluconazole-vs-Nystatin differences with the full statistical battery (ANOVA, ART, Kruskal–Wallis, permutation, Tukey, pairwise t, LMM, LOESS F-test), exported as `Fig5.1.clincal_outcomes.svg`.
+Plots each clinical score across weeks (W0–W8) as raw bars and per-patient baseline-corrected (delta) trajectories, annotating Fluconazole-vs-Nystatin differences with the full statistical battery (ANOVA, ART, Kruskal–Wallis, permutation, Tukey, pairwise t, LMM, LOESS F-test), exported as `Fig4.1.clincal_outcomes.svg`.
 
 ~~~R
 ReadCap.20251215 <- mcreadRDS("./workshop/MMC/Aidan_info/v2/ReadCap.20251215.rds")
@@ -222,14 +222,14 @@ total_plots3 <- lapply(1:length(diease_Scores),function(dis) {
     })
 plot <- CombinePlots(c(total_plots1,total_plots3),nrow=2)
 plot
-ggsave("./projects/MMC/Figures/v2_figures/Fig5.1.clincal_outcomes.svg", plot=plot,width = 30, height = 8,dpi=300)
+ggsave("./projects/MMC/Figures/v2_figures/Fig4.1.clincal_outcomes.svg", plot=plot,width = 30, height = 8,dpi=300)
 ~~~
 
-![Fig5.1.clincal_outcomes](./Clincal.assets/Fig5.1.clincal_outcomes.png)
+![Fig4.1.clincal_outcomes](./Clincal.assets/Fig4.1.clincal_outcomes.png)
 
-## 5.1.3 Clinical Scores by Treatment Phase (Pre/Post/LTM)
+## 4.1.3 Clinical Scores by Treatment Phase (Pre/Post/LTM)
 
-Collapses time into Pre (W0), Post (W1–W4), and LTM (W8) phases and plots raw and delta clinical scores per phase for each treatment arm, exported as `Fig5.1.clincal_outcomes2`.
+Collapses time into Pre (W0), Post (W1–W4), and LTM (W8) phases and plots raw and delta clinical scores per phase for each treatment arm, exported as `Fig4.1.clincal_outcomes2`.
 
 ~~~R
 ReadCap.20251215 <- mcreadRDS("./workshop/MMC/Aidan_info/v2/ReadCap.20251215.rds")
@@ -287,13 +287,13 @@ total_plots2 <- lapply(1:length(diease_Scores),function(dis) {
     })
 plot <- CombinePlots(c(total_plots1,total_plots2),nrow=2)
 plot
-ggsave("./projects/MMC/Figures/v2_figures/Fig5.1.clincal_outcomes2.svg", plot=plot,width = 30, height = 8,dpi=300)
-ggsave("./projects/MMC/Figures/v2_figures/Fig5.1.clincal_outcomes2.png", plot=plot,width = 30, height = 8,dpi=300)
+ggsave("./projects/MMC/Figures/v2_figures/Fig4.1.clincal_outcomes2.svg", plot=plot,width = 30, height = 8,dpi=300)
+ggsave("./projects/MMC/Figures/v2_figures/Fig4.1.clincal_outcomes2.png", plot=plot,width = 30, height = 8,dpi=300)
 ~~~
 
-![Fig5.1.clincal_outcomes2](./Clincal.assets/Fig5.1.clincal_outcomes2.png)
+![Fig4.1.clincal_outcomes2](./Clincal.assets/Fig4.1.clincal_outcomes2.png)
 
-## 5.1.4 Patient Metadata, Response Classification, and Survival Curves
+## 4.1.4 Patient Metadata, Response Classification, and Survival Curves
 
 Assembles the patient-level metadata table (demographics, disease severity, concomitant medications), harmonizes categorical fields, defines clinical progression (PR vs NR) separately for UC and CD, and draws Kaplan–Meier event curves (probability of score decrease) for UC, CD, and the combined cohort by treatment group.
 
@@ -444,7 +444,7 @@ arrange_ggsurvplots(list(p1,p2,p3),ncol = 3,nrow = 1,risk.table.height = 0.25)
 
 ![image-20260615111440579](./Clincal.assets/image-20260615111440579.png)
 
-## 5.1.5 Clinical Response Proportions
+## 4.1.5 Clinical Response Proportions
 
 Tabulates partial-response (PR) vs non-response (NR) proportions per treatment group and draws a stacked proportion bar chart, exported as `Fig5.Clincal_progression.svg`.
 
@@ -470,9 +470,9 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig5.Clincal_progression.svg", plot=pl
 
 ![image-20260615111652676](./Clincal.assets/image-20260615111652676.png)
 
-## 5.1.6 Cox Proportional-Hazards Model
+## 4.1.6 Cox Proportional-Hazards Model
 
-Fits a multivariable Cox model for time-to-response adjusting for medications, treatment, gender, and diagnosis, and renders the hazard-ratio forest plot, exported as `Fig5.1.cox.pdf`.
+Fits a multivariable Cox model for time-to-response adjusting for medications, treatment, gender, and diagnosis, and renders the hazard-ratio forest plot, exported as `Fig4.1.cox.pdf`.
 
 ~~~r
 library("survival")
@@ -487,16 +487,16 @@ summary(coxph_result,data=total_times_tmp)
 source("./code/log-summery/MyBestFunction_scRNA.R.v4.R")
 XY_ggforest_MMC(coxph_result, data =total_times_tmp, main = "Hazard ratio",fontsize = 1.0, refLabel = "1", noDigits = 3)
 
-pdf("./projects/MMC/Figures/v2_figures/Fig5.1.cox.pdf",width=8,height=5)
+pdf("./projects/MMC/Figures/v2_figures/Fig4.1.cox.pdf",width=8,height=5)
 XY_ggforest_MMC(coxph_result, data =total_times_tmp, main = "Hazard ratio",fontsize = 1.0, refLabel = "1", noDigits = 3)
 dev.off()
 ~~~
 
 ![image-20260615114841981](./Clincal.assets/image-20260615114841981.png)
 
-## 5.1.7 DAI Trajectory Spider Plot (by Diagnosis and Treatment)
+## 4.1.7 DAI Trajectory Spider Plot (by Diagnosis and Treatment)
 
-Builds per-patient DAI change trajectories, runs the full statistical battery, and draws spider/line plots of individual patients (colored by response) with the cohort mean, faceted by diagnosis and treatment, exported as `Fig5.1.spider.improvments.svg`.
+Builds per-patient DAI change trajectories, runs the full statistical battery, and draws spider/line plots of individual patients (colored by response) with the cohort mean, faceted by diagnosis and treatment, exported as `Fig4.1.spider.improvments.svg`.
 
 ~~~R
 ReadCap.20251215 <- mcreadRDS("./workshop/MMC/Aidan_info/v2/ReadCap.20251215.rds")
@@ -606,14 +606,14 @@ labs(title = paste0("DAI","\n", "Flu vs Nystatin (ANOVA p: ", anova.pvalue0," | 
     "|\n","TukeyHSD p: ",TukeyHSD.pvalue1," | ","loess p: ",Ftestp_value,"|\n","pairwise. p: ",pairwise.t.pvalue1," | ",
     "LMM p: ",LMM.pvalue1,")"),y = "Δ")
 plot
-ggsave("./projects/MMC/Figures/v2_figures/Fig5.1.spider.improvments.svg", plot=plot,width = 10, height = 8,dpi=300)
+ggsave("./projects/MMC/Figures/v2_figures/Fig4.1.spider.improvments.svg", plot=plot,width = 10, height = 8,dpi=300)
 ~~~
 
 ![image-20260615115040040](./Clincal.assets/image-20260615115040040.png)
 
-## 5.1.8 DAI Trajectory Spider Plot (by Treatment Only)
+## 4.1.8 DAI Trajectory Spider Plot (by Treatment Only)
 
-Re-draws the DAI trajectory spider plot faceted by treatment only (pooling diagnoses), exported as `Fig5.1.spider.improvments1.svg`.
+Re-draws the DAI trajectory spider plot faceted by treatment only (pooling diagnoses), exported as `Fig4.1.spider.improvments1.svg`.
 
 ~~~R
 plot <- ggplot(df_paired2, aes_string(x = "time_numeric", y = "value")) + 
@@ -626,7 +626,7 @@ labs(title = paste0("DAI","\n", "Flu vs Nystatin (ANOVA p: ", anova.pvalue0," | 
     "|\n","TukeyHSD p: ",TukeyHSD.pvalue1," | ","loess p: ",Ftestp_value,"|\n","pairwise. p: ",pairwise.t.pvalue1," | ",
     "LMM p: ",LMM.pvalue1,")"),y = "Δ")
 plot
-ggsave("./projects/MMC/Figures/v2_figures/Fig5.1.spider.improvments1.svg", plot=plot,width = 10, height = 8,dpi=300)
+ggsave("./projects/MMC/Figures/v2_figures/Fig4.1.spider.improvments1.svg", plot=plot,width = 10, height = 8,dpi=300)
 ~~~
 
 ![image-20260615115101056](./Clincal.assets/image-20260615115101056.png)
