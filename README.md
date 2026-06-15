@@ -2,42 +2,36 @@
 
 This page recorded the codes and data used and mentioned in [*xxx*](XXX). And you could downloaded this paper by clicking [here](pdf/XXX)
 
-
-
-abstract .
-
-Gut fungal dysbiosis and the presence of pathogenic fungal strains is increasingly recognized as a contributing factor to inflammatory bowel disease (IBD) pathogenesis. The subpopulation of IBD patients as well as clinical strategies if targeting gut fungi in IBD remain underexplored. Here, we conducted a longitudinal, multi-omics analysis in a prospective, head-to-head comparative study involving 40 IBD patients presenting with oral thrush and mild to moderate IBD disease activity. Notably, *C. albicans* strains detected in these patients were shared between the oral cavity and the gut, enabling a therapeutic strategy that distinguishes between oral and orogastrointestinal fungal targeting. Based on this, patients were assigned to standard antifungal treatments with site-specific activity: oral nystatin targeting *Candida* in the oral cavity (ORNT), or systemic fluconazole targeting both oral and gastrointestinal *Candida* (GIFT). By integrating fungal culturing, ITS and metagenomic sequencing with untargeted metabolomics we found that GIFT, but not ORNT, effectively targets gut *C. albicans* and other pathogenic fungi in IBD patients. Cross-kingdom analyses revealed that in the GIFT group reductions in fungal diversity correlated with increased bacterial diversity and the emergence of beneficial microbial metabolites including butyrate and lithocholic acid. Metabolomic modules negatively associated with fungal burden were enriched in bile acid and fatty acid biosynthesis pathways, while modules linked to persistence of *C. albicans* were enriched in pro-inflammatory mediators.  These findings highlight an oral-gut axis of fungal dissemination and establish a mechanistic rationale for testing antifungal therapy as personalized co-treatment strategies for IBD patients suffering pathogenic gut fungal expansion.
+Gut fungal dysbiosis has been implicated in inflammatory bowel disease (IBD), yet strategies for targeting the gut mycobiota in IBD remain unexplored. Here we leveraged the observation that *Candida albicans* strains are shared between the oral cavity and gut in IBD patients with mild oral thrush to design a prospective observational study where we compared oral antifungal therapy (swish‑and‑spit nystatin, ORNT) versus oro‑gastrointestinal antifungal therapy (fluconazole, GIFT). In 53 patients with mild‑to‑moderate ulcerative colitis (UC) or Crohn’s disease (CD), fluconazole, but not nystatin, effectively reduced intestinal *Candida* burden and reshaped gut fungal composition. Intestinal fungal targeting in the GIFT group was associated with increased bacterial diversity, expansion of short‑chain fatty acid-producing taxa, restoration of anti‑inflammatory microbial metabolites, and durable shifts in cross‑kingdom microbial networks. This microbiome and metabolomic changes in the GIFT group were associated with improved disease activity indices and a decreased risk of disease progression over the 8‑week follow‑up period. This study demonstrates the feasibility of mycobiome‑based patient stratification and establishes a framework for investigating antifungal co-therapy for IBD patients with fungal manifestations.
 
 # **1. Codes of analyzing and visualization**
 
 **Introduction to Our Script Compilation for Analysis**
 
-In our comprehensive analysis of antifungal treatment in the MMC cohort, we have organized our scripts into six distinct chapters. Each chapter focuses on a specific aspect of the analysis, enabling a detailed examination of different facets of antifungal treatment effects in IBD. Below is a guide to the content of each chapter:
+In our comprehensive analysis of antifungal treatment in the MMC cohort, we have organized our scripts into five analysis chapters (Chapters 2–6). Each chapter focuses on a specific aspect of the analysis, enabling a detailed examination of different facets of antifungal treatment effects in IBD. Below is a guide to the content of each chapter and the script file that contains it:
 
-- **[Chapter 0](Chapter0.md): Pre-processing of Microbiome and Metabolome Data**
-  
-  - Content: Initial processing steps for **multi-omics data (ITS, metagenomics, metabolomics)**, including data cleaning, normalization, and quality control.
-  
-- **[Chapter 1](Chapter1.md): Microbiome and Metabolome Data Integration and Processing**
+**[Chapter 1 — Fungal Abundance Data Analysis](Fungi.md)** (`Fungi.md`)
 
-  - **Content:** This chapter integrates **multi-omics data (ITS, metagenomics, metabolomics)** with **longitudinal clinical metadata** to examine **microbiome dynamics in response to treatment**.
+- **Content:** Integrates **fungal abundance data (ITS sequencing) with clinical metadata** to assess **treatment-induced shifts in fungal communities**, including alpha/beta diversity, *Candida* burden, taxonomic composition, and visualization of fungal responses across treatment groups and time points.
 
-  **[Chapter 2](Chapter2.md): Fungal Abundance Data Analysis**
+**[Chapter 2 — Bacterial Analysis: Data Processing, Visualization, and Statistical Testing](Bacterial.md)** (`Bacterial.md`)
 
-  - **Content:** This section integrates **fungal abundance data (ITS sequencing) with clinical metadata** to assess **treatment-induced shifts in fungal communities**.
+- **Content:** Incorporates **ITS sequencing and metagenomic profiling** from the **MMC cohort**, focusing on **treatment responses and gut microbial shifts**. It provides additional evidence on **how different antifungal treatments influence the gut bacterial community**, covering diversity metrics, differential abundance, and SCFA-producing taxa.
 
-  **[Chapter 3](Chapter3.md): Bacterial Analysis – Data Processing, Visualization, and Statistical Testing**
+**[Chapter 3 — Metabolomic Data Analysis](Metabolomics.md)** (`Metabolomics.md`)
 
-  - **Content:** This analysis incorporates **ITS sequencing and metagenomic profiling** from the **MMC cohort**, focusing on **treatment responses and gut microbial shifts**. It provides additional evidence on **how different antifungal treatments influence the gut bacterial community**.
+- **Content:** Investigates **metabolomic shifts under antifungal treatments** (Nystatin and Fluconazole), including data normalization, differential metabolite testing, Mfuzz temporal clustering, and pathway enrichment.
 
-  **[Chapter 4](Chapter4.md): Metabolomic Data Analysis**
+**[Chapter 4 — Clinical Data Analysis](Clincal.md)** (`Clincal.md`)
 
-  - **Content:** This section investigates **metabolomic shifts under antifungal treatments** (Nystatin, Clotrimazole, and Fluconazole).
+- **Content:** Presents **clinical outcome analyses**, including **disease scores (DAI, UC, CD), patient metadata, medications, disease progression, and their association with antifungal treatments**.
 
-  **[Chapter 5](Chapter5.md): Clinical Data Analysis**
+**[Chapter 5 — Cross-kingdom and Clinical Correlation Analysis](Cor_Fungi_Metabolites.md)**
 
-  - **Content:** This chapter presents **clinical outcome analyses**, including **disease scores (DAI, UC, CD), patient metadata, and their association with antifungal treatments**.
-
+- **Content:** Integrates the multi-omics layers above to characterize **cross-kingdom microbial networks** and their links to clinical outcomes. This chapter is split across three scripts:
+  - **[5.1 Fungal features vs metabolite modules](Cor_Fungi_Metabolites.md)** (`Cor_Fungi_Metabolites.md`) — correlates fungal diversity / *Candida* burden with metabolite modules.
+  - **[5.2 Bacterial taxa vs metabolite modules](Cor_Bac_Metabolites.md)** (`Cor_Bac_Metabolites.md`) — correlates Fluconazole-responsive bacterial taxa with metabolite modules.
+  - **[5.3 Clinical indices vs microbiome/metabolome features](Cor_Clincal_micro.md)** (`Cor_Clincal_micro.md`) — relates SCFA-producing/probiotic taxa and metabolite features to clinical disease indices.
 
 Each chapter contains detailed scripts, methodologies, and analyses relevant to the specific aspect of antifungal treatment it addresses. This structured approach allows researchers to navigate our comprehensive analysis with ease, enhancing their understanding of antifungal treatment effects in IBD.
 
@@ -45,51 +39,12 @@ Each chapter contains detailed scripts, methodologies, and analyses relevant to 
 
 - **Description**: This section includes all the raw FASTQ files from our study. These files are crucial for in-depth data analysis and understanding the sequencing results from multiple-Omics.
 
-- **Download**: You can access and download these files from the [GEO database](https://chat.openai.com/c/link-to-download).
-
-Below is a detailed annotation of the file structure and contents:
-
-```shell
-[4.0K]  .
-```
-
-# **3. Processed Data Download**
-
-## 3.1. XXX and XXX  Output
-
-- **Description**: This section includes the output files fromXXXX, essential for the initial data processing and analysis.
-- **Download**: These files are available for access and download from the [GEO database](https://chat.openai.com/c/link-to-download).
-
-Below is a detailed annotation of the file structure and contents:
-
-```shell
-code[4.0K]  .
-```
-
-- Contents
-  - Each `XXX.tar.gz` file includes the XX file from XXX count model.
-  
-    
-
-## 3.2. R Data Files Generated in This Study
-
-- **Description**: All R data files (.rds) related to XXX data are available. These files encompass a comprehensive range of analyses and findings from our study.
-- **Download**: You can download these files from [Zenodo Zenodo XXXX](https://zenodo.org/records/XXX).
-
-Here's an annotation for each file to give you :
-
-~~~shell
-tree -lh
-[4.0K]  .
-~~~
-
-Each file seems to contain specific data subsets or analysis results, crucial for a comprehensive understanding of ACC and normal adrenal tissues at the single-cell level.
+- **Download**: You can access and download these files from the [PRJNA1449485](https://dataview.ncbi.nlm.nih.gov/object/PRJNA1449485).
 
 # **Citation**
 
-Our paper has been published in [*XXX Journal*](https://chat.openai.com/c/xxxx). For further reference and details, you can access the publication at the provided link.
+Our paper has been published in [*Nature Medicine*](https://c). For further reference and details, you can access the publication at the provided link.
 
 The raw data supporting the findings of this study can be downloaded from the following repositories:
 
-- **GEO Database**: Access our dataset by visiting [GSEXXX](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSEXXX). This link will take you directly to the dataset's page.
-- **Zenodo**: Additional data files are available on Zenodo. Download them at [Zenodo XXX](https://zenodo.org/records/XXX).
+- **Database**: Access our dataset by visiting [PRJNA1449485](https://dataview.ncbi.nlm.nih.gov/object/PRJNA1449485). 
