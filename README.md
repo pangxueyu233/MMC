@@ -2,7 +2,7 @@
 
 This page recorded the codes and data used and mentioned in [*Nature Medicine*](https://c). And you could downloaded this paper by clicking [here](pdf/XXX)
 
-![image-20260615162319999](./README.assets/image-20260615162319999.png)
+![image-20260616092349857](./README.assets/image-20260616092349857.png)
 
 Gut fungal dysbiosis has been implicated in inflammatory bowel disease (IBD), yet strategies for targeting the gut mycobiota in IBD remain unexplored. Here we leveraged the observation that *Candida albicans* strains are shared between the oral cavity and gut in IBD patients with mild oral thrush to design a prospective observational study where we compared oral antifungal therapy (swish‑and‑spit nystatin, ORNT) versus oro‑gastrointestinal antifungal therapy (fluconazole, GIFT). In 53 patients with mild‑to‑moderate ulcerative colitis (UC) or Crohn’s disease (CD), fluconazole, but not nystatin, effectively reduced intestinal *Candida* burden and reshaped gut fungal composition. Intestinal fungal targeting in the GIFT group was associated with increased bacterial diversity, expansion of short‑chain fatty acid-producing taxa, restoration of anti‑inflammatory microbial metabolites, and durable shifts in cross‑kingdom microbial networks. This microbiome and metabolomic changes in the GIFT group were associated with improved disease activity indices and a decreased risk of disease progression over the 8‑week follow‑up period. This study demonstrates the feasibility of mycobiome‑based patient stratification and establishes a framework for investigating antifungal co-therapy for IBD patients with fungal manifestations.
 
