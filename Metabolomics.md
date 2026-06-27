@@ -939,7 +939,7 @@ top_terms <- top_terms %>% group_by(Cluster) %>% top_n(5, wt = Impact) %>% ungro
 # top_terms <- enriche_smpdb.total1_res1[enriche_smpdb.total1_res1$pathway_name %in% unique(top_terms1$pathway_name),]
 top_terms <- top_terms %>%arrange(Cluster, Impact) %>%
 mutate(ordering = factor(pathway_name,levels = unique(pathway_name)[length(unique(pathway_name)):1]))
-plot <- ggplot(top_terms, aes(x = Cluster,y = ordering,size = Impact,color = Impact)) +  geom_point() +
+plot <- ggplot(top_terms, aes(x = Cluster,y = ordering,size = Impact,color = -log10(p_value))) +  geom_point() +
 scale_color_gradient(low = "blue", high = "red", name = "-log10(p-value)") +scale_size_continuous(name = "Impact") +theme_classic() +
 labs(title = "smpdb Metabolic Enrichment",x = "Cluster",y = "Pathway Name") + 
 theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "black", family = "Arial"),axis.text.y = element_text(size = 12, color = "black", family = "Arial"))
@@ -948,7 +948,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig4.Metabolic Enrichment.svg", plot=p
 write.csv(top_terms,"./projects/MMC/Figures/figures_making/v4/Metabolites.SMPDB.csv")
 ~~~
 
-![image-20260615103529479](./Metabolomics.assets/image-20260615103529479.png)
+![image-20260627151708714](./Metabolomics.assets/image-20260627151708714.png)
 
 
 

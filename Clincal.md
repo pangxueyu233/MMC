@@ -222,10 +222,12 @@ total_plots3 <- lapply(1:length(diease_Scores),function(dis) {
     })
 plot <- CombinePlots(c(total_plots1,total_plots3),nrow=2)
 plot
-ggsave("./projects/MMC/Figures/v2_figures/Fig4.1.clincal_outcomes.svg", plot=plot,width = 30, height = 8,dpi=300)
+ggsave("/mnt/d/xiangyu.ubuntu/projects/MMC/Figures/v2_figures/Fig5.1.clincal_outcomes.svg", plot=plot,width = 30, height = 8,dpi=300)
+ggsave("/mnt/d/xiangyu.ubuntu/projects/MMC/Figures/v2_figures/Fig5.1.clincal_outcomes.png", plot=plot,width = 30, height = 8,dpi=300)
+
 ~~~
 
-![Fig4.1.clincal_outcomes](./Clincal.assets/Fig4.1.clincal_outcomes.png)
+![Fig5.1.clincal_outcomes](./Clincal.assets/Fig5.1.clincal_outcomes-1782588100082-1.png)
 
 ## 4.1.3 Clinical Scores by Treatment Phase (Pre/Post/LTM)
 
