@@ -293,7 +293,7 @@ ggsave("./projects/MMC/Figures/v2_figures/Fig4.1.clincal_outcomes2.svg", plot=pl
 ggsave("./projects/MMC/Figures/v2_figures/Fig4.1.clincal_outcomes2.png", plot=plot,width = 30, height = 8,dpi=300)
 ~~~
 
-![Fig4.1.clincal_outcomes2](./Clincal.assets/Fig4.1.clincal_outcomes2.png)
+![Fig5.1.clincal_outcomes2](./Clincal.assets/Fig5.1.clincal_outcomes2-1782588289438-1.png)
 
 ## 4.1.4 Patient Metadata, Response Classification, and Survival Curves
 
