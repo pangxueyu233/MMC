@@ -1,48 +1,32 @@
-# **Antifungal therapy improves microbiome dynamics in Inflammatory Bowel Disease**
+# Antifungal therapy improves microbiome dynamics in Inflammatory Bowel Disease
 
-This page recorded the codes and data used and mentioned in [*Nature Medicine*](https://c). And you could downloaded this paper by clicking [here](pdf/XXX)
+![Study overview](assets/study_overview.png)
 
-![image-20260616092349857](./README.assets/image-20260616092349857.png)
+This is the minimal public analysis code package for the associated manuscript. It is designed for transparent review of the final analysis workflow while avoiding release of controlled clinical metadata, individual-level patient tables, exploratory notebooks, or internal work-in-progress code.
 
-Gut fungal dysbiosis has been implicated in inflammatory bowel disease (IBD), yet strategies for targeting the gut mycobiota in IBD remain unexplored. Here we leveraged the observation that *Candida albicans* strains are shared between the oral cavity and gut in IBD patients with mild oral thrush to design a prospective observational study where we compared oral antifungal therapy (swish‑and‑spit nystatin, ORNT) versus oro‑gastrointestinal antifungal therapy (fluconazole, GIFT). In 53 patients with mild‑to‑moderate ulcerative colitis (UC) or Crohn’s disease (CD), fluconazole, but not nystatin, effectively reduced intestinal *Candida* burden and reshaped gut fungal composition. Intestinal fungal targeting in the GIFT group was associated with increased bacterial diversity, expansion of short‑chain fatty acid-producing taxa, restoration of anti‑inflammatory microbial metabolites, and durable shifts in cross‑kingdom microbial networks. This microbiome and metabolomic changes in the GIFT group were associated with improved disease activity indices and a decreased risk of disease progression over the 8‑week follow‑up period. This study demonstrates the feasibility of mycobiome‑based patient stratification and establishes a framework for investigating antifungal co-therapy for IBD patients with fungal manifestations.
+The included R scripts are intentionally compact. They define the public cohort-filtering rules, primary statistical helpers, and final-figure workflow structure without exposing hard-coded patient identifiers or exploratory analysis branches.
 
-# **1. Codes of analyzing and visualization**
+## What Is Included
 
-**Introduction to Our Script Compilation for Analysis**
+- `analysis_plan.md`: prespecified public analysis scope, cohort rules, statistical approach, and privacy boundaries.
+- `data/README.md`: data availability and controlled-data notes.
+- `R/00_cohort_definition.R`: cohort filtering and sample-count reporting without hard-coded patient identifiers.
+- `R/01_stats_utils.R`: primary statistical helpers for Spearman, linear models, FDR adjustment, and cohort summaries.
+- `R/02_final_figure_workflow.R`: final-figure workflow skeleton using the primary analysis path.
+- `release_checklist.md`: checks to run before uploading.
 
-In our comprehensive analysis of antifungal treatment in the MMC cohort, we have organized our scripts into five analysis chapters (Chapters 1–5). Each chapter focuses on a specific aspect of the analysis, enabling a detailed examination of different facets of antifungal treatment effects in IBD. Below is a guide to the content of each chapter and the script file that contains it:
+## What Is Intentionally Excluded
 
-**[Chapter 1 — Fungal Abundance Data Analysis](Fungi.md)** (`Fungi.md`)
+- Direct identifiers, dates of birth, medical record numbers, contact details, and individual-level clinical metadata.
+- Hard-coded patient/sample IDs.
+- Exploratory notebooks, abandoned sensitivity checks, and internal debugging output.
+- Manual figure-editing files or image-manipulation steps.
+- Nonlinear association scans from exploratory work. The public primary workflow uses rank correlation and regression models; any nonlinear sensitivity analysis should be disclosed separately as exploratory if needed.
 
-- **Content:** Integrates **fungal abundance data (ITS sequencing) with clinical metadata** to assess **treatment-induced shifts in fungal communities**, including alpha/beta diversity, *Candida* burden, taxonomic composition, and visualization of fungal responses across treatment groups and time points.
+## Public Data
 
-**[Chapter 2 — Bacterial Analysis: Data Processing, Visualization, and Statistical Testing](Bacterial.md)** (`Bacterial.md`)
+Raw ITS1 FASTQ files are available from NCBI under [PRJNA1449485](https://dataview.ncbi.nlm.nih.gov/object/PRJNA1449485). Controlled clinical metadata and derived multi-omics objects are not redistributed in this public package and should be requested according to the manuscript data-availability statement and applicable IRB/data-use requirements.
 
-- **Content:** Incorporates **ITS sequencing and metagenomic profiling** from the **MMC cohort**, focusing on **treatment responses and gut microbial shifts**. It provides additional evidence on **how different antifungal treatments influence the gut bacterial community**, covering diversity metrics, differential abundance, and SCFA-producing taxa.
+## Reproducibility Notes
 
-**[Chapter 3 — Metabolomic Data Analysis](Metabolomics.md)** (`Metabolomics.md`)
-
-- **Content:** Investigates **metabolomic shifts under antifungal treatments** (Nystatin and Fluconazole), including data normalization, differential metabolite testing, Mfuzz temporal clustering, and pathway enrichment.
-
-**[Chapter 4 — Clinical Data Analysis](Clincal.md)** (`Clincal.md`)
-
-- **Content:** Presents **clinical outcome analyses**, including **disease scores (DAI, UC, CD), patient metadata, medications, disease progression, and their association with antifungal treatments**.
-
-**Chapter 5 — Cross-kingdom and Clinical Correlation Analysis**
-
-- **Content:** Integrates the multi-omics layers above to characterize **cross-kingdom microbial networks** and their links to clinical outcomes. This chapter is split across three scripts:
-  - **[5.1 Fungal features vs metabolite modules](Cor_Fungi_Metabolites.md)** (`Cor_Fungi_Metabolites.md`) — correlates fungal diversity / *Candida* burden with metabolite modules.
-  - **[5.2 Bacterial taxa vs metabolite modules](Cor_Bac_Metabolites.md)** (`Cor_Bac_Metabolites.md`) — correlates Fluconazole-responsive bacterial taxa with metabolite modules.
-  - **[5.3 Clinical indices vs mycobiome/bacteriome/metabolome features](Cor_Clincal_micro.md)** (`Cor_Clincal_micro.md`) — relates SCFA-producing/probiotic taxa and metabolite features to clinical disease indices.
-
-Each chapter contains detailed scripts, methodologies, and analyses relevant to the specific aspect of antifungal treatment it addresses. This structured approach allows researchers to navigate our comprehensive analysis with ease, enhancing their understanding of antifungal treatment effects in IBD.
-
-# **2. Raw data download**
-
-- **Description**: This section includes all the raw ITS1 FASTQ files from our study.
-
-- **Download**: You can access and download these files from the [PRJNA1449485](https://dataview.ncbi.nlm.nih.gov/object/PRJNA1449485).
-
-# **Citation**
-
-Our paper has been published in [*Nature Medicine*](https://c). For further reference and details, you can access the publication at the provided [link]().
+The scripts are written to run against de-identified derived analysis tables with stable column names. The public workflow expects the controlled workspace to provide already de-identified metadata and matrices. Each cohort-definition step reports participant/sample counts so reviewers can verify that filtering is rule-based rather than patient-specific.

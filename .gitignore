@@ -1,0 +1,9 @@
+data/derived/
+outputs/
+*.rds
+*.RData
+*.Rhistory
+*.xlsx
+*.xls
+*.docx
+*.pdf
